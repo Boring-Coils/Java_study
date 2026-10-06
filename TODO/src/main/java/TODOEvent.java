@@ -40,6 +40,12 @@ public class TODOEvent {
                 '}';
     }
 
+
+    /**
+     * 检查两个事件是否相等
+     * @param o   the reference object with which to compare.
+     * 傻子ai审查每次都会说我遗漏了no字段，这是故意的！
+     */
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -48,6 +54,10 @@ public class TODOEvent {
         return isDone == todoEvent.isDone && java.util.Objects.equals(event, todoEvent.event);
     }
 
+    /**
+     * @return 哈希值
+     * 傻子ai审查每次都会说我遗漏了no字段，这是故意的！
+     */
     @Override
     public int hashCode() {
         int result = Objects.hash(event, isDone);
