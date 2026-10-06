@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * @author Bored_Coils
  * 这个类负责储存列表中的某一个事项
@@ -43,14 +45,12 @@ public class TODOEvent {
         if (o == null || getClass() != o.getClass()) return false;
 
         TODOEvent todoEvent = (TODOEvent) o;
-        return no == todoEvent.no && isDone == todoEvent.isDone && event.equals(todoEvent.event);
+        return isDone == todoEvent.isDone && java.util.Objects.equals(event, todoEvent.event);
     }
 
     @Override
     public int hashCode() {
-        int result = no;
-        result = 31 * result + event.hashCode();
-        result = 31 * result + Boolean.hashCode(isDone);
+        int result = Objects.hash(event, isDone);
         return result;
     }
 
