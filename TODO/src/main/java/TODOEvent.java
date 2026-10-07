@@ -5,8 +5,8 @@ import java.util.Objects;
  * 这个类负责储存列表中的某一个事项
  */
 public class TODOEvent {
-    // 事件在某张表上的序号
-    private int no;
+    // 事件在某张表上的序号（从0开始）
+    private int no = 0;
     private String event;
     private boolean isDone = false;
 
@@ -16,14 +16,25 @@ public class TODOEvent {
     public boolean getStatus() {return isDone;}
     public void setStatus(boolean status) {this.isDone = status;}
 
+    /**
+     * 构造函数
+     */
     public TODOEvent() {}
+
+    /**
+     * 构造函数
+     * @param event 事件内容
+     */
+    TODOEvent(String event) {
+        this.event = event;
+    }
 
     /**
      * 构造函数
      * @param no 事件在该表上的编号
      * @param event 事件内容
      */
-    TODOEvent(int no, String event) {
+    TODOEvent(int no , String event) {
         this.event = event;
         this.no = no;
     }
