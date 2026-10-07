@@ -1,5 +1,8 @@
+import exception.AddNullEventException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class TODOList {
@@ -36,11 +39,19 @@ public class TODOList {
     }
 
     public List<TODOEvent> getTODOList() {
-        return TODOList;
+        return List.copyOf(TODOList);
     }
 
-    public void setTODOList(List<TODOEvent> TODOList) {
+    /**
+     * 通过现成的列表生成，调用该方法会直接覆盖原有内容<br>
+     * 该方法会自动依照事项在列表中的位置重写事项的{@code no}属性
+     * @param TODOList
+     */
+    public void loadTODOList(List<TODOEvent> TODOList) {
         this.TODOList = TODOList;
+        for (int i = 0; i < this.TODOList.size(); i++){
+            TODOList.get(i).setNo(i);
+        }
     }
 
 
@@ -49,6 +60,11 @@ public class TODOList {
      * @param event 事项的实例
      */
     public void addEvent(TODOEvent event){
+        try{
+            Objects.requireNonNull(event, "event 不能为空");
+        }catch (NullPointerException e){
+            throw new AddNullEventException(e.getMessage(),e);
+        }
         event.setNo(TODOList.size());
         TODOList.add(event);
     }
@@ -59,10 +75,18 @@ public class TODOList {
      * @param no 位置
      */
     public void addEvent(TODOEvent event, int no){
+        try{
+            Objects.requireNonNull(event, "event 不能为空");
+        }catch (NullPointerException e){
+            throw new AddNullEventException(e.getMessage(),e);
+        }
         if(no>TODOList.size()){ no = TODOList.size();}
         else if(no<0){ no = 0;}
         event.setNo(no);
         TODOList.add(no, event);
+        for (int i = no; i < this.TODOList.size(); i++){
+            TODOList.get(i).setNo(i);
+        }
     }
 
     /**
@@ -70,6 +94,11 @@ public class TODOList {
      * @param event 事项的内容字符串
      */
     public void addEvent(String event){
+        try{
+            Objects.requireNonNull(event, "event 不能为空");
+        }catch (NullPointerException e){
+            throw new AddNullEventException(e.getMessage(),e);
+        }
         TODOEvent e = new TODOEvent(TODOList.size(), event);
         TODOList.add(e);
     }
@@ -80,10 +109,18 @@ public class TODOList {
      * @param no 位置
      */
     public void addEvent(String event, int no){
+        try{
+            Objects.requireNonNull(event, "event 不能为空");
+        }catch (NullPointerException e){
+            throw new AddNullEventException(e.getMessage(),e);
+        }
         if(no>TODOList.size()){ no = TODOList.size();}
         else if(no<0){ no = 0;}
         TODOEvent e = new TODOEvent(no, event);
         TODOList.add(no, e);
+        for (int i = 0; i < this.TODOList.size(); i++){
+            TODOList.get(i).setNo(i);
+        }
     }
 
 }
