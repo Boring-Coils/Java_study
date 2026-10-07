@@ -53,9 +53,9 @@ public class TODOEvent {
 
 
     /**
-     * 检查两个事件是否相等
-     * @param o   the reference object with which to compare.
+     * 检查两个事件是否相等 <br>
      * 傻子ai审查每次都会说我遗漏了no字段，这是故意的！
+     * @param o   the reference object with which to compare.
      */
     @Override
     public boolean equals(Object o) {
@@ -66,8 +66,8 @@ public class TODOEvent {
     }
 
     /**
-     * @return 哈希值
      * 傻子ai审查每次都会说我遗漏了no字段，这是故意的！
+     * @return 哈希值
      */
     @Override
     public int hashCode() {

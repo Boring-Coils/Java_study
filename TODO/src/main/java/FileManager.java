@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import exception.StorageException;
 
-
+/**
+ * @author Bored_Coils
+ */
 public class FileManager {
     private static ObjectMapper mapper = new ObjectMapper();
 

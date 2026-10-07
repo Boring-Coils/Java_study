@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+/**
+ * @author Bored_Coils
+ */
 public class TODOList {
     public String name;
     /**
