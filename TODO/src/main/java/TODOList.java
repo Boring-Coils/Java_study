@@ -48,7 +48,7 @@ public class TODOList {
     /**
      * 通过现成的列表生成，调用该方法会直接覆盖原有内容<br>
      * 该方法会自动依照事项在列表中的位置重写事项的{@code no}属性
-     * @param TODOList
+     * @param TODOList 现成的TODOList列表
      */
     public void loadTODOList(List<TODOEvent> TODOList) {
         this.TODOList = TODOList;
