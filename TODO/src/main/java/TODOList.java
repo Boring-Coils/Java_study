@@ -1,6 +1,7 @@
 import exception.AddNullEventException;
 import exception.StorageException;
-import exception.loadTODOListException;
+import exception.loadNullTODOListException;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class TODOList {
         try {
             Objects.requireNonNull(this.TODOList);
         }catch (NullPointerException e) {
-            throw new loadTODOListException(e.getMessage(), e);
+            throw new loadNullTODOListException(e.getMessage(), e);
         }
         this.TODOList = List.copyOf(TODOList);
         for (int i = 0; i < this.TODOList.size(); i++){

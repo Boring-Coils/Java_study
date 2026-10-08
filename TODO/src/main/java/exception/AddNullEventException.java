@@ -1,6 +1,7 @@
 package exception;
 
 /**
+ * 向TODOList里面添加事项时传入了空值
  * @author Bored_Coils
  */
 public class AddNullEventException extends RuntimeException {
