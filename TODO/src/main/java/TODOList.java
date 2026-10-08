@@ -20,7 +20,7 @@ public class TODOList {
 
     private List<TODOEvent> TODOList = new ArrayList<>();
 
-    FileManager fileManager = new FileManager();
+    //FileManager fileManager = new FileManager();
 
     /**
      * 构造函数
@@ -28,7 +28,7 @@ public class TODOList {
      */
     TODOList(String name){
         this.name=name;
-        Random rand = new Random();
+        //Random rand = new Random();
         //id=rand.nextInt(99999)+1;
     }
 
@@ -186,10 +186,22 @@ public class TODOList {
 
     public void save(){
         try{
-            fileManager.SaveList(id, TODOList);
+            FileManager.SaveList(id, TODOList);
         }catch (StorageException e){
             throw new StorageException("清单保存失败：" + id,e);
         }
     }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer(name + "\n");
+        for (int i = 0; i < TODOList.size(); i++){
+            sb.append(TODOList.get(i).toString() + "\n");
+        }
+        return sb.toString();
+    }
+
+
+
 
 }

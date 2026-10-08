@@ -24,7 +24,7 @@ public class FileManager {
      * @param TODOList 清单类
      * @throws StorageException 保存清单失败
      */
-    public void SaveList(int id, List<TODOEvent> TODOList) {
+    public static void SaveList(int id, List<TODOEvent> TODOList) {
         try {
             File dir = new File(DATA_DIR);
             if (!dir.exists()) {
@@ -43,7 +43,7 @@ public class FileManager {
      * @return 清单类
      * @throws StorageException 读取清单失败
      */
-    public List<TODOEvent> LoadList(int id) {
+    public static List<TODOEvent> LoadList(int id) {
         File file = new File(DATA_DIR, id + ".json");
         if (!file.exists()) {
             return new ArrayList<>();

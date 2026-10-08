@@ -45,10 +45,7 @@ public class TODOEvent {
 
     @Override
     public String toString() {
-        return "TODOEvent{" + "no=" + no +
-                ", event='" + event + '\'' +
-                ", isDone=" + isDone +
-                '}';
+        return no + ". " + event + ": " + isDone;
     }
 
 
