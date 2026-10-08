@@ -11,7 +11,7 @@ import java.util.Random;
  * @author Bored_Coils
  */
 public class TODOList {
-    public String name;
+    private String name;
     /**
      * 清单id
      * 这个是只读的，不允许修改
@@ -134,7 +134,7 @@ public class TODOList {
         else if(no<0){ no = 0;}
         TODOEvent e = new TODOEvent(no, event);
         TODOList.add(no, e);
-        for (int i = 0; i < this.TODOList.size(); i++){
+        for (int i = no; i < this.TODOList.size(); i++){
             TODOList.get(i).setNo(i);
         }
         save();
