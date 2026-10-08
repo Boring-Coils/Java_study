@@ -1,4 +1,5 @@
 import exception.AddNullEventException;
+import exception.StorageException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,8 @@ public class TODOList {
     private int id;
 
     private List<TODOEvent> TODOList = new ArrayList<>();
+
+    FileManager fileManager = new FileManager();
 
     /**
      * 构造函数
@@ -55,6 +58,7 @@ public class TODOList {
         for (int i = 0; i < this.TODOList.size(); i++){
             TODOList.get(i).setNo(i);
         }
+        save();
     }
 
 
@@ -70,6 +74,7 @@ public class TODOList {
         }
         event.setNo(TODOList.size());
         TODOList.add(event);
+        save();
     }
 
     /**
@@ -90,6 +95,7 @@ public class TODOList {
         for (int i = no; i < this.TODOList.size(); i++){
             TODOList.get(i).setNo(i);
         }
+        save();
     }
 
     /**
@@ -104,6 +110,7 @@ public class TODOList {
         }
         TODOEvent e = new TODOEvent(TODOList.size(), event);
         TODOList.add(e);
+        save();
     }
 
     /**
@@ -124,6 +131,7 @@ public class TODOList {
         for (int i = 0; i < this.TODOList.size(); i++){
             TODOList.get(i).setNo(i);
         }
+        save();
     }
 
     /**
@@ -134,6 +142,7 @@ public class TODOList {
         if(no>=TODOList.size()){ return;}
         if(no<0){ return;}
         TODOList.get(no).setStatus(true);
+        save();
     }
 
     /**
@@ -144,7 +153,37 @@ public class TODOList {
         if(no>=TODOList.size()){ return;}
         if(no<0){ return;}
         TODOList.get(no).setStatus(false);
+        save();
     }
 
+    /**
+     * 根据索引删除指定的事件，并重新排列后续事件的编号
+     * @param no 要删除的事件在清单中的索引
+     */
+    public void removeEvent(int no){
+        if(no>=TODOList.size()){ return;}
+        if(no<0){ return;}
+        TODOList.remove(no);
+        for (int i = no; i < this.TODOList.size(); i++){
+            TODOList.get(i).setNo(i);
+        }
+        save();
+    }
+
+    /**
+     * 清空清单内容，删除所有事件
+     */
+    public void clear(){
+        TODOList.clear();
+        save();
+    }
+
+    public void save(){
+        try{
+            fileManager.SaveList(id, TODOList);
+        }catch (StorageException e){
+            throw new StorageException("清单保存失败：" + id,e);
+        }
+    }
 
 }
