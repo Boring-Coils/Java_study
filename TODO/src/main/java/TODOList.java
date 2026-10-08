@@ -1,5 +1,6 @@
 import exception.AddNullEventException;
 import exception.StorageException;
+import exception.loadTODOListException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class TODOList {
      * 清单id
      * 这个是只读的，不允许修改
      */
-    private int id;
+    private final int id = 0;
 
     private List<TODOEvent> TODOList = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class TODOList {
     TODOList(String name){
         this.name=name;
         Random rand = new Random();
-        id=rand.nextInt(99999)+1;
+        //id=rand.nextInt(99999)+1;
     }
 
 
@@ -54,7 +55,12 @@ public class TODOList {
      * @param TODOList 现成的TODOList列表
      */
     public void loadTODOList(List<TODOEvent> TODOList) {
-        this.TODOList = TODOList;
+        try {
+            Objects.requireNonNull(this.TODOList);
+        }catch (NullPointerException e) {
+            throw new loadTODOListException(e.getMessage(), e);
+        }
+        this.TODOList = List.copyOf(TODOList);
         for (int i = 0; i < this.TODOList.size(); i++){
             TODOList.get(i).setNo(i);
         }
