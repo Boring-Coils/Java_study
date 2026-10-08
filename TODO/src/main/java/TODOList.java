@@ -126,4 +126,25 @@ public class TODOList {
         }
     }
 
+    /**
+     * 设置某个事项已完成
+     * @param no 事项编号
+     */
+    public void setDone (int no){
+        if(no>=TODOList.size()){ return;}
+        if(no<0){ return;}
+        TODOList.get(no).setStatus(true);
+    }
+
+    /**
+     * 设置某个事项未完成
+     * @param no 事项编号
+     */
+    public void setNotDone (int no){
+        if(no>=TODOList.size()){ return;}
+        if(no<0){ return;}
+        TODOList.get(no).setStatus(false);
+    }
+
+
 }
